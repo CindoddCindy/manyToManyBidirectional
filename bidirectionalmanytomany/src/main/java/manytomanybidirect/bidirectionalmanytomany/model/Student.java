@@ -38,6 +38,11 @@ public class Student {
             @JoinColumn(name = "COURSE_ID") })
     private Set<Course> courses;
 
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+    @JoinTable(name = "STUDENT_SCHEDULLE", joinColumns = { @JoinColumn(name = "STUDENT_ID") }, inverseJoinColumns = {
+            @JoinColumn(name = "SCHEDULLE_ID") })
+    private Set<Schedulle> schedulles;
+
     public void addCourse(Course course) {
         this.courses.add(course);
         course.getStudents().add(this);
@@ -51,6 +56,23 @@ public class Student {
     public void removeCourses() {
         for (Course course : new HashSet<>(courses)) {
             removeCourse(course);
+        }
+    }
+
+
+    public void addSchedulle(Schedulle schedulle) {
+        this.schedulles.add(schedulle);
+        schedulle.getStudents().add(this);
+    }
+
+    public void removeSchedulle(Schedulle schedulle) {
+        this.getSchedulles().remove(schedulle);
+        schedulle.getStudents().remove(this);
+    }
+
+    public void removeSchedulle() {
+        for (Schedulle schedulle : new HashSet<>(schedulles)) {
+            removeSchedulle(schedulle);
         }
     }
 }
