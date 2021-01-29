@@ -1,5 +1,6 @@
 package manytomanybidirect.bidirectionalmanytomany.onetomany.repository;
 
+import manytomanybidirect.bidirectionalmanytomany.model.Course;
 import manytomanybidirect.bidirectionalmanytomany.onetomany.model.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,13 +10,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer>{
     Page<Book> findByLibraryId(Integer libraryId, Pageable pageable);
 
-    Page<Book> findByAuthorId(Integer authorId, Pageable pageable);
+    public Book findByName(String bookName);
 
 
     @Modifying
@@ -23,8 +25,5 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
     @Query("DELETE FROM Book b WHERE b.library.id = ?1")
     void deleteByLibraryId(Integer libraryId);
 
-    @Modifying
-    @Transactional
-    @Query("DELETE FROM Book b WHERE b.author.id = ?1")
-    void deleteByAuthorId(Integer authorId);
+
 }

@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.model.Book;
 
 @Getter
 @Setter
@@ -42,6 +43,13 @@ public class Student {
     @JoinTable(name = "STUDENT_SCHEDULLE", joinColumns = { @JoinColumn(name = "STUDENT_ID") }, inverseJoinColumns = {
             @JoinColumn(name = "SCHEDULLE_ID") })
     private Set<Schedulle> schedulles;
+
+
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+    @JoinTable(name = "STUDENT_BOOK", joinColumns = { @JoinColumn(name = "STUDENT_ID") }, inverseJoinColumns = {
+            @JoinColumn(name = "BOOK_ID") })
+    private Set<Book> books;
+
 
     public void addCourse(Course course) {
         this.courses.add(course);
@@ -73,6 +81,23 @@ public class Student {
     public void removeSchedulle() {
         for (Schedulle schedulle : new HashSet<>(schedulles)) {
             removeSchedulle(schedulle);
+        }
+    }
+
+
+    public void addBook(Book book) {
+        this.books.add(book);
+        book.getStudents().add(this);
+    }
+
+    public void removeBook(Book book) {
+        this.getSchedulles().remove(book);
+        book.getStudents().remove(this);
+    }
+
+    public void removeBook() {
+        for (Book book : new HashSet<>(books)) {
+            removeBook(book);
         }
     }
 }

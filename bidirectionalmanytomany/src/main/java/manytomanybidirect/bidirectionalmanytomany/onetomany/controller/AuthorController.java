@@ -1,9 +1,9 @@
 package manytomanybidirect.bidirectionalmanytomany.onetomany.controller;
 
 
-import oneToManyUnidirectional.unidirectionalOneToMany.model.Author;
-import oneToManyUnidirectional.unidirectionalOneToMany.repository.AuthorRepository;
-import oneToManyUnidirectional.unidirectionalOneToMany.repository.BookRepository;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.model.Author;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.repository.AuthorRepository;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

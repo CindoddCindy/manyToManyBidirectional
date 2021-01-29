@@ -112,11 +112,6 @@ public class BookController {
         return ResponseEntity.ok(bookRepository.findByLibraryId(libraryId, pageable));
     }
 
-    @GetMapping("/author/{authorId}")
-    public ResponseEntity<Page<Book>> getByAuthorId(@PathVariable Integer authorId,Pageable pageable){
-        return ResponseEntity.ok(bookRepository.findByAuthorId(authorId,pageable));
-    }
-
 
 
 }

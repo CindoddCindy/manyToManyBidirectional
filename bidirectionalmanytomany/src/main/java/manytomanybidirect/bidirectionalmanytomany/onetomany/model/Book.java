@@ -1,9 +1,12 @@
 package manytomanybidirect.bidirectionalmanytomany.onetomany.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import manytomanybidirect.bidirectionalmanytomany.model.Student;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -20,6 +23,10 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Library library;
+
+    @ManyToMany(mappedBy = "books")
+    @JsonIgnore
+    private Set<Student> students;
 
 
 
@@ -48,5 +55,11 @@ public class Book {
         this.library = library;
     }
 
+    public Set<Student> getStudents() {
+        return students;
+    }
 
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
 }

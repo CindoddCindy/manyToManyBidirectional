@@ -1,9 +1,9 @@
 package manytomanybidirect.bidirectionalmanytomany.onetomany.controller;
 
-import oneToManyUnidirectional.unidirectionalOneToMany.model.Author;
-import oneToManyUnidirectional.unidirectionalOneToMany.model.Book;
-import oneToManyUnidirectional.unidirectionalOneToMany.repository.AuthorRepository;
-import oneToManyUnidirectional.unidirectionalOneToMany.repository.BookRepository;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.model.Author;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.model.Book;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.repository.AuthorRepository;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +29,7 @@ public class BookControllerAuthor {
         this.bookRepository = bookRepository;
         this.authorRepository=authorRepository;
     }
-
+/*
     @PostMapping
     public ResponseEntity<Book> creates(@RequestBody @Valid Book book) {
         Optional<Author> optionalAuthor=authorRepository.findById(book.getAuthor().getId());
@@ -45,5 +45,7 @@ public class BookControllerAuthor {
 
         return ResponseEntity.created(location).body(savedBook);
     }
+
+ */
 
 }

@@ -1,6 +1,6 @@
 package manytomanybidirect.bidirectionalmanytomany.onetomany.repository;
 
-import oneToManyUnidirectional.unidirectionalOneToMany.model.Author;
+import manytomanybidirect.bidirectionalmanytomany.onetomany.model.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
